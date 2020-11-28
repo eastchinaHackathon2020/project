@@ -122,6 +122,7 @@
 import { merge } from "../api/upload";
 import {registerProject} from "../api/project";
 import { Store,mapState } from 'vuex';
+import axios from 'axios';
 
 
 // tasks:[
@@ -183,17 +184,6 @@ export default{
       // 添加任务阶段并不涉及到 id！！
         tasks:[
         ],
-      //
-      /* uploadOptions1: {
-        target: "//localhost:8080/upload/single",//上传的接口
-        testChunks: false, //是否开启服务器分验
-        fileParameterName: "file",//默认的文件参数名
-        headers: {},
-        query() {},
-        categaryMap: { //用于限制上传的类型
-          document: ["gif", "jpg", "jpeg", "png", "bmp","cpp"],
-        }
-      }, */
       attrs: {
       },
     }
@@ -204,7 +194,18 @@ export default{
         this.modalShow = !this.modalShow;
         this.form.userId=this.$store.getters.account.id;
         console.log(this.form.projectUrl);
+        /* axios
+        .post('upload/registerProject',this.form)
+            .then(result => {
+                console.log(result)
+        }); */
+        axios
+        .get('api/userProject/'+this.$store.getters.account.id)
+            .then(result=>{
+                console.log(result);
+        });
         this.form.projectUrl='';
+
     },
     showform(){
         this.formshow=true;

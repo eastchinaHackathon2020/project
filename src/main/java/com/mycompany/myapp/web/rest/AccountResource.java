@@ -57,6 +57,7 @@ public class AccountResource {
         this.mailService = mailService;
     }
 
+
     /**
      * {@code POST  /register} : register the user.
      *
@@ -74,6 +75,7 @@ public class AccountResource {
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
         mailService.sendActivationEmail(user);
     }
+
 
     @ResponseBody
     @GetMapping("/{userId}/getUserRecord")

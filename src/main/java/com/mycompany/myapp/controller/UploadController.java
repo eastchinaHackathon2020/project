@@ -38,25 +38,8 @@ public class UploadController {
     private IUploadService uploadService;
     @Autowired
     private RecordRepository recordRepository;
-//    @Autowired
-//    private CmdService cmdService;
 
 
-//    @PostMapping("single")
-//    public void singleUpload(Chunk chunk) {
-//        MultipartFile file = chunk.getFile();
-//        String filename = chunk.getFilename();
-//        try {
-//            byte[] bytes = file.getBytes();
-//            if (!Files.isWritable(Paths.get(SINGLE_FOLDER))) {
-//                Files.createDirectories(Paths.get(SINGLE_FOLDER));
-//            }
-//            Path path = Paths.get(SINGLE_FOLDER,filename);
-//            Files.write(path, bytes);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
 
     @ResponseBody
