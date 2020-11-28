@@ -12,9 +12,31 @@
 
                     <b-col md="5">
                         <b-card-body :title="thisProject.githubAddress">
-                            <b-card-text>
-                                This is a wider card with supporting text as a natural lead-in to additional content.
-                                This content is a little bit longer.
+                            <a src="#"   style="color:#43AB5B">{{thisProject.imgUrl}}</a>
+                            <b-card-text style="margin-top: 30px">
+<!--                            <b-card-text>-->
+<!--                                This is a wider card with supporting text as a natural lead-in to additional content.-->
+<!--                                This content is a little bit longer.-->
+<!--                            </b-card-text>-->
+                            <div  v-for="taskElem in this.thisProject.tasks"  style=" margin-left:50px;margin-right: 30px;margin-top: 10px ;display: flex;justify-content:space-around;align-items: center">
+                                <b-dropdown
+                                    block
+                                    split
+                                    split-variant="outline-primary"
+                                    variant="primary"
+                                    :text="taskElem.name"
+                                    @click="chooseTask(taskElem)"
+                                    size=""
+                                    style="width: 350px;margin-right:10px  "
+                                >
+                                    <div href="#"
+                                         v-for="subTaskElem in taskElem.subTask"
+                                         style="width: 350px; height: 30px;display: flex;justify-content:space-between;align-items: center"
+                                    >
+                                        <div style="padding-left: 20px">{{ subTaskElem }}</div>
+                                    </div>
+                                </b-dropdown>
+                            </div>
                             </b-card-text>
                         </b-card-body>
                     </b-col>
@@ -26,10 +48,10 @@
         </div>
     </div>
 </template>
+<!--src="../util/clipboard.min.js"-->
+<script >
 
-<script>
-
-
+    // import Clipboard from 'clipboard';
     export default {
         name: "Result",
         data() {
@@ -43,7 +65,22 @@
             this.thisProject=this.$store.getters.thisProject
         },
         mounted() {
-
+    },
+        methods:{
+            // copy() {
+            //     var clipboard = new Clipboard('.tag-read');
+            //     clipboard.on('success', e => {
+            //         console.log('复制成功')
+            //         // 释放内存
+            //         clipboard.destroy()
+            //     })
+            //     clipboard.on('error', e => {
+            //         // 不支持复制
+            //         console.log('该浏览器不支持自动复制')
+            //         // 释放内存
+            //         clipboard.destroy()
+            //     })
+            // }
     }
     }
 </script>
