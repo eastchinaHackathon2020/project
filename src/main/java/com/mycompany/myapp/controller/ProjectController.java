@@ -22,4 +22,9 @@ public class ProjectController {
     public ResponseVO getUserProject(@PathVariable("userId") String userId){
         return projectService.userProject(userId);
     }
+
+    @RequestMapping(value = { "test" }, method = { RequestMethod.GET }, produces="image/svg+xml; charset=utf-8")
+    public String test(){
+        return "<h3>hello</h3>";
+    }
 }
