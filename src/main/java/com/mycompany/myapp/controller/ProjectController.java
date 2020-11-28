@@ -1,7 +1,10 @@
 package com.mycompany.myapp.controller;
 
+import com.mycompany.myapp.domain.Record;
+import com.mycompany.myapp.repository.RecordRepository;
 import com.mycompany.myapp.service.IProjectService;
 import com.mycompany.myapp.vo.FormVO;
+import com.mycompany.myapp.vo.RecVO;
 import com.mycompany.myapp.vo.ResponseVO;
 import com.mycompany.myapp.vo.TaskVO;
 import org.apache.ibatis.annotations.Param;
@@ -14,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/project")
+@RequestMapping("/projectapi")
 public class ProjectController {
     @Autowired
     IProjectService projectService;

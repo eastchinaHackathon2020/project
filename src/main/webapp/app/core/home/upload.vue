@@ -197,7 +197,7 @@ export default{
                 console.log(result)
         }); */
         axios
-        .get('project/userProject/'+this.$store.getters.account.id)
+        .get('api/userProject/'+this.$store.getters.account.id)
             .then(result=>{
                 console.log(result);
         });

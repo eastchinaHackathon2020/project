@@ -57,6 +57,7 @@ public class AccountResource {
         this.mailService = mailService;
     }
 
+
     /**
      * {@code POST  /register} : register the user.
      *
