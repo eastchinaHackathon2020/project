@@ -168,6 +168,7 @@ export default{
         form:{
             userId:-1,
             projectUrl:'',
+            task:[],
             targetMilestone:[],
         },
       //!!
@@ -193,18 +194,22 @@ export default{
     submitProject(){
         this.modalShow = !this.modalShow;
         this.form.userId=this.$store.getters.account.id;
+        /* for(let i=0;i<this.tasks.length;i++){
+            this.tasks[i]
+        } */
+        this.form.task=this.tasks;
         console.log(this.form.projectUrl);
-        /* axios
-        .post('upload/registerProject',this.form)
+        axios
+        .post('api/registerProject',this.form)
             .then(result => {
                 console.log(result)
-        }); */
-        axios
+        });
+       /*  axios
         .get('api/userProject/'+this.$store.getters.account.id)
             .then(result=>{
                 console.log(result);
         });
-        this.form.projectUrl='';
+        this.form.projectUrl=''; */
 
     },
     showform(){
