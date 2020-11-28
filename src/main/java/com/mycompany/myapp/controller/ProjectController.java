@@ -3,6 +3,7 @@ package com.mycompany.myapp.controller;
 import com.mycompany.myapp.service.IProjectService;
 import com.mycompany.myapp.vo.FormVO;
 import com.mycompany.myapp.vo.ResponseVO;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +14,12 @@ public class ProjectController {
     @Autowired
     IProjectService projectService;
 
-    @PostMapping("registerProject")
+    @PostMapping("/registerProject")
     public ResponseVO registerProject(@RequestBody FormVO formVO){
         return projectService.registerProject(formVO);
     }
 
-    @GetMapping("userProject/{userId}")
+    @GetMapping("/userProject/{userId}")
     public ResponseVO getUserProject(@PathVariable("userId") String userId){
         return projectService.userProject(userId);
     }

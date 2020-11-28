@@ -75,6 +75,7 @@ public class AccountResource {
         mailService.sendActivationEmail(user);
     }
 
+
     @ResponseBody
     @GetMapping("/{userId}/getUserRecord")
     public List<RecVO> getUserRecord(@PathVariable int userId){
