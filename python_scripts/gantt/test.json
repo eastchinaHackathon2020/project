@@ -1,0 +1,381 @@
+{
+  "xlabel": "time(days)",
+  "title": "compilers",
+  "packages": [
+    {
+      "start": 1,
+      "end": 2,
+      "milestones" : [2],
+      "label": "1-overview",
+      "legend": "worker one",
+      "color" : "orange"
+    },
+    {
+      "start": 2,
+      "end": 3,
+      "label": "1-overview"
+    },
+    {
+      "start": 3,
+      "end": 4,
+      "label": "1-overview"
+    },
+    {
+      "start": 3,
+      "end": 4,
+      "label": "2-lexer"
+    },
+    {
+      "start": 3,
+      "end": 4,
+      "label": "1-overview"
+    },
+    {
+      "start": 3,
+      "end": 4,
+      "label": "2-lexer"
+    },
+    {
+      "start": 4,
+      "end": 5,
+      "label": "2-lexer"
+    },
+    {
+      "start": 5,
+      "end": 6,
+      "label": "2-lexer"
+    },
+    {
+      "start": 5,
+      "end": 6,
+      "label": "2-lexer"
+    },
+    {
+      "start": 5,
+      "end": 6,
+      "label": "2-lexer"
+    },
+    {
+      "start": 6,
+      "end": 7,
+      "label": "2-lexer"
+    },
+    {
+      "start": 6,
+      "end": 7,
+      "label": "2-lexer"
+    },
+    {
+      "start": 7,
+      "end": 8,
+      "label": "2-lexer"
+    },
+    {
+      "start": 8,
+      "end": 9,
+      "label": "2-lexer"
+    },
+    {
+      "start": 9,
+      "end": 10,
+      "label": "1-overview"
+    },
+    {
+      "start": 10,
+      "end": 11,
+      "label": "2-lexer"
+    },
+    {
+      "start": 10,
+      "end": 11,
+      "label": "1-overview"
+    },
+    {
+      "start": 11,
+      "end": 12,
+      "label": "1-overview"
+    },
+    {
+      "start": 11,
+      "end": 12,
+      "label": "2-lexer"
+    },
+    {
+      "start": 12,
+      "end": 13,
+      "label": "2-lexer"
+    },
+    {
+      "start": 12,
+      "end": 13,
+      "label": "2-lexer"
+    },
+    {
+      "start": 13,
+      "end": 14,
+      "label": "2-lexer"
+    },
+    {
+      "start": 13,
+      "end": 14,
+      "label": "2-lexer"
+    },
+    {
+      "start": 14,
+      "end": 15,
+      "label": "2-lexer"
+    },
+    {
+      "start": 14,
+      "end": 15,
+      "label": "2-lexer"
+    },
+    {
+      "start": 15,
+      "end": 16,
+      "label": "2-lexer"
+    },
+    {
+      "start": 16,
+      "end": 17,
+      "label": "2-lexer"
+    },
+    {
+      "start": 17,
+      "end": 18,
+      "label": "2-lexer"
+    },
+    {
+      "start": 18,
+      "end": 19,
+      "label": "2-lexer"
+    },
+    {
+      "start": 18,
+      "end": 19,
+      "label": "3-parser"
+    },
+    {
+      "start": 18,
+      "end": 19,
+      "label": "2-lexer"
+    },
+    {
+      "start": 18,
+      "end": 19,
+      "label": "3-parser"
+    },
+    {
+      "start": 18,
+      "end": 19,
+      "label": "3-parser"
+    },
+    {
+      "start": 18,
+      "end": 19,
+      "label": "2-lexer"
+    },
+    {
+      "start": 19,
+      "end": 20,
+      "label": "3-parser"
+    },
+    {
+      "start": 20,
+      "end": 21,
+      "label": "3-parser"
+    },
+    {
+      "start": 20,
+      "end": 21,
+      "label": "3-parser"
+    },
+    {
+      "start": 21,
+      "end": 22,
+      "label": "3-parser"
+    },
+    {
+      "start": 21,
+      "end": 22,
+      "label": "3-parser"
+    },
+    {
+      "start": 21,
+      "end": 22,
+      "label": "3-parser"
+    },
+    {
+      "start": 22,
+      "end": 23,
+      "label": "3-parser"
+    },
+    {
+      "start": 22,
+      "end": 23,
+      "label": "3-parser"
+    },
+    {
+      "start": 22,
+      "end": 23,
+      "label": "3-parser"
+    },
+    {
+      "start": 23,
+      "end": 24,
+      "label": "3-parser"
+    },
+    {
+      "start": 23,
+      "end": 24,
+      "label": "3-parser"
+    },
+    {
+      "start": 24,
+      "end": 25,
+      "label": "3-parser"
+    },
+    {
+      "start": 24,
+      "end": 25,
+      "label": "3-parser"
+    },
+    {
+      "start": 25,
+      "end": 26,
+      "label": "2-lexer"
+    },
+    {
+      "start": 25,
+      "end": 26,
+      "label": "2-lexer"
+    },
+    {
+      "start": 26,
+      "end": 27,
+      "label": "2-lexer"
+    },
+    {
+      "start": 26,
+      "end": 27,
+      "label": "2-lexer"
+    },
+    {
+      "start": 27,
+      "end": 28,
+      "label": "2-lexer"
+    },
+    {
+      "start": 27,
+      "end": 28,
+      "label": "2-lexer"
+    },
+    {
+      "start": 28,
+      "end": 29,
+      "label": "2-lexer"
+    },
+    {
+      "start": 29,
+      "end": 30,
+      "label": "2-lexer"
+    },
+    {
+      "start": 30,
+      "end": 31,
+      "label": "2-lexer"
+    },
+    {
+      "start": 31,
+      "end": 32,
+      "label": "2-lexer"
+    },
+    {
+      "start": 31,
+      "end": 32,
+      "label": "3-parser"
+    },
+    {
+      "start": 31,
+      "end": 32,
+      "label": "2-lexer"
+    },
+    {
+      "start": 31,
+      "end": 32,
+      "label": "3-parser"
+    },
+    {
+      "start": 31,
+      "end": 32,
+      "label": "3-parser"
+    },
+    {
+      "start": 31,
+      "end": 32,
+      "label": "2-lexer"
+    },
+    {
+      "start": 32,
+      "end": 33,
+      "label": "3-parser"
+    },
+    {
+      "start": 33,
+      "end": 34,
+      "label": "3-parser"
+    },
+    {
+      "start": 33,
+      "end": 34,
+      "label": "3-parser"
+    },
+    {
+      "start": 34,
+      "end": 35,
+      "label": "3-parser"
+    },
+    {
+      "start": 34,
+      "end": 35,
+      "label": "3-parser"
+    },
+    {
+      "start": 34,
+      "end": 35,
+      "label": "3-parser"
+    },
+    {
+      "start": 35,
+      "end": 36,
+      "label": "3-parser"
+    },
+    {
+      "start": 35,
+      "end": 36,
+      "label": "3-parser"
+    },
+    {
+      "start": 35,
+      "end": 36,
+      "label": "3-parser"
+    },
+    {
+      "start": 36,
+      "end": 37,
+      "label": "3-parser"
+    },
+    {
+      "start": 36,
+      "end": 37,
+      "label": "3-parser"
+    },
+    {
+      "start": 37,
+      "end": 38,
+      "label": "3-parser"
+    }
+  ],
+
+  "xticks" : [2,10,20,30,40]
+}
