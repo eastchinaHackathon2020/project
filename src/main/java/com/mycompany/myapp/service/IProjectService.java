@@ -10,4 +10,9 @@ public interface IProjectService {
      * @return
      */
     ResponseVO registerProject(FormVO formVO);
+    /**
+     * 获取某个用户的项目列表
+     * @return
+     */
+    ResponseVO userProject(String userId);
 }

@@ -48,6 +48,11 @@ public class ProjectServiceImpl implements IProjectService {
         }
     }
 
+    @Override
+    public ResponseVO userProject(String userId) {
+        return ResponseVO.buildSuccess(projectMapper.getProjectByUserId(userId));
+    }
+
     private String revertToAPIURL(String projectUrl){
         String res  = projectUrl.replace("github.com/","api.github.com/repos/");
         if (res.endsWith("/")){

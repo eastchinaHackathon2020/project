@@ -3,11 +3,9 @@ package com.mycompany.myapp.controller;
 import com.mycompany.myapp.service.IProjectService;
 import com.mycompany.myapp.vo.FormVO;
 import com.mycompany.myapp.vo.ResponseVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/project")
@@ -18,5 +16,10 @@ public class ProjectController {
     @PostMapping("registerProject")
     public ResponseVO registerProject(@RequestBody FormVO formVO){
         return projectService.registerProject(formVO);
+    }
+
+    @GetMapping("userProject/{userId}")
+    public ResponseVO getUserProject(@PathVariable("userId") String userId){
+        return projectService.userProject(userId);
     }
 }
