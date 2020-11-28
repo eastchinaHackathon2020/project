@@ -198,14 +198,15 @@ export default{
             this.tasks[i]
         } */
         this.form.task=this.tasks;
-        console.log(this.form.projectUrl);
+        
+        //console.log(this.form.projectUrl);
         axios
         .post('api/registerProject',this.form)
             .then(result => {
-                console.log(result)
+                console.log(result);
+                this.form.projectUrl='';
         });
         
-        this.form.projectUrl='';
 
     },
     showform(){
