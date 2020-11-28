@@ -30,12 +30,17 @@ import ConfigurationService from '@/admin/configuration/configuration.service';
 import VueHighlightJS from 'vue-highlightjs';
 import 'highlight.js/styles/atom-one-light.css';
 
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 /* tslint:disable */
 
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
 
 /* tslint:enable */
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
+
 Vue.config.productionTip = false;
 config.initVueApp(Vue);
 config.initFortAwesome(Vue);

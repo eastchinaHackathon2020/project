@@ -9,20 +9,21 @@
 
         <b-list-group flush style="margin-top: 30px">
             <b-list-group-item>
-                <div style="display: flex">
-                    <h1 style="font-size: 23px;font-weight: bold;margin-left: 150px;width: 400px;text-align: left">文件名</h1>
-                    <h1 style="font-size: 23px;font-weight: bold;width: 400px;text-align: left">报错数</h1>
-                    <h1 style="font-size: 23px;font-weight: bold;text-align: left">检测时间</h1>
+                <div style="display: flex;justify-content:space-between;">
+                    <h1 style="font-size: 23px;font-weight: bold;width: 400px;text-align: left">项目地址</h1>
+<!--                    <h1 style="font-size: 23px;font-weight: bold;width: 400px;text-align: left">报错数</h1>-->
+                    <h1 style="font-size: 23px;font-weight: bold;text-align: right">图片路径</h1>
                 </div>
             </b-list-group-item>
-            <b-list-group-item v-for="res in this.myResList" :key="res.index">
-                <div style="display: flex"  @click="jumpToDetail(res)">
-                    <h1 style="font-size: 23px;font-weight: normal;margin-left: 150px;width: 400px;text-align: left">{{res.filename}}</h1>
-                    <h1 style="font-size: 23px;font-weight: normal;width: 400px;text-align: left">{{res.warning.split('\n').length-1}}</h1>
-                    <h1 style="font-size: 23px;font-weight: normal;text-align: left">{{res.time}}</h1>
+            <b-list-group-item v-for="project in this.allProjects" >
+                <div style="display: flex;justify-content:space-between;"  @click="jumpToDetail(project)">
+                    <h1 style="font-size: 23px;font-weight: normal;width: 400px;text-align: left">{{project.githubAddress}}</h1>
+<!--                    <h1 style="font-size: 23px;font-weight: normal;width: 400px;text-align: left">{{res.warning.split('\n').length-1}}</h1>-->
+                    <h1 style="font-size: 23px;font-weight: normal;text-align: right">{{project.imgUrl}}</h1>
                 </div>
             </b-list-group-item>
         </b-list-group>
+
     </div>
 </template>
 
@@ -34,7 +35,72 @@
         name: "Record",
         data(){
             return{
-                myResList:'',
+                allProjects:[
+                 {
+                     imgUrl:"https://www.jb51.net/article/185112.htm",
+                     githubAddress:"asdfsaddsasdagdsagsdagdsg",
+                     tasks:
+                     [
+                        {
+                            name: "task1",
+                            subTask: ["subtask1", "subtask2", "subtask3"]
+                        },
+                        {
+                            name: "task2",
+                            subTask: ["subtask4", "subtask5", "subtask6"],
+
+                        },
+                        {
+                            name: "task3",
+                            subTask: ["subtask6", "subtask1", "subtask8"],
+                        }
+                    ]
+                },
+                {
+                    imgUrl:"https://www.jbdfa51.net/article/185112.htm",
+                    githubAddress:"asdfsaddsasdadsfasfagdsagsdagdsg",
+                    tasks:
+                        [
+                            {
+                                name: "task9",
+                                subTask: ["subtask1", "subtask2", "subtask3"]
+                            },
+                            {
+                                name: "task31",
+                                subTask: ["subtask4", "subtask5", "subtask6"],
+
+                            },
+                            {
+                                name: "task34",
+                                subTask: ["subtask6", "subtask1", "subtask8"],
+                            }
+                        ]
+                },
+                {
+                    imgUrl:"https://www.jb51.net/article/185112.htm",
+                    githubAddress:"asdfsaddsasdagdsagsdagdsg",
+                    tasks:
+                        [
+                            {
+                                name: "task10",
+                                subTask: ["subtask1", "subtask2", "subtask3"]
+                            },
+                            {
+                                name: "task18",
+                                subTask: ["subtask4", "subtask5", "subtask6"],
+
+                            },
+                            {
+                                name: "task123",
+                                subTask: ["subtask6", "subtask1", "subtask8"],
+                            }
+                        ]
+                }
+
+                ],
+
+
+                //
                 numList:[],
                 recordList:[],
             }
@@ -50,10 +116,9 @@
                 });
         },
         methods:{
-            jumpToDetail(res){
-                console.log('res')
-                this.$store.commit('setPassage',res.content)
-                this.$store.commit('setWarning',res.warning)
+            jumpToDetail(project){
+                this.$store.commit('setProject',project)
+                //将当前的project commit到store
                 this.$router.push({name: 'Result'})
             }
         }

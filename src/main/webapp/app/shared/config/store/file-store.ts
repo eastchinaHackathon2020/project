@@ -2,19 +2,15 @@ import { Module } from 'vuex';
 
 export const fileStore: Module<any, any> = {
   state: {
-    content: '',
-    warning: ''
+    thisProject: {}
   },
   getters: {
-    content: state => state.content,
-    warning: state => state.warning
+    thisProject: state => state.thisProject,
   },
   mutations: {
-    setPassage(state, content) {
-      state.content = content;
+    setProject(state, thisProject) {
+      state.thisProject = thisProject;
     },
-    setWarning(state, warning) {
-      state.warning = warning;
-    }
+
   }
 };

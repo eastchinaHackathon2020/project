@@ -58,7 +58,7 @@
                                                      v-for="subTaskElem in taskElem.subTask"
                                                      style="width: 270px; height: 30px;display: flex;justify-content:space-between;align-items: center"
                                     >
-                                        <div style="padding-left: 20px">{{ subTaskElem.subname }}</div>
+                                        <div style="padding-left: 20px">{{ subTaskElem }}</div>
                                         <b-button
                                             variant="link"
                                             size=""
@@ -123,6 +123,42 @@ import { merge } from "../api/upload";
 import {registerProject} from "../api/project";
 import { Store,mapState } from 'vuex';
 
+
+// tasks:[
+//     {
+//         name:"task1",
+//         subTask:[
+//             {
+//                 subname:"subTask1",
+//             },
+//             {
+//                 subname:"subTask4",
+//             },
+//             {
+//                 subname:"subTask7",
+//             },
+//         ]
+//     },
+//     {
+//         name:"task2",
+//
+//         subTask:[
+//             {
+//                 subname:"subTask2",
+//             }
+//         ]
+//     },
+//     {
+//         name:"task3",
+//
+//         subTask:[
+//             {
+//                 subname:"subTask3",
+//
+//             }
+//         ]
+//     },
+// ],
 export default{
     name: "Upload",
     data() {
@@ -146,39 +182,6 @@ export default{
 
       // 添加任务阶段并不涉及到 id！！
         tasks:[
-            {
-                name:"task1",
-                subTask:[
-                    {
-                        subname:"subTask1",
-                    },
-                    {
-                        subname:"subTask4",
-                    },
-                    {
-                        subname:"subTask7",
-                    },
-                ]
-            },
-            {
-                name:"task2",
-
-                subTask:[
-                    {
-                        subname:"subTask2",
-                    }
-                ]
-            },
-            {
-                name:"task3",
-
-                subTask:[
-                    {
-                        subname:"subTask3",
-
-                    }
-                ]
-            },
         ],
       //
       /* uploadOptions1: {
@@ -218,7 +221,7 @@ export default{
           //    find task
               for(let i = 0; i < this.tasks.length; i++) {
                   if(this.tasks[i].name==this.choosedTaskName) {
-                      this.tasks[i].subTask.push({subname: this.addTaskName});
+                      this.tasks[i].subTask.push(this.addTaskName);
                       break;
                   }
               }
@@ -239,13 +242,14 @@ export default{
       },
       delSubTask(subTaskElem){
           console.log("delSub");
-          console.log(subTaskElem.subname);
+          console.log(subTaskElem);
           var isDel=0;
           for(let i = 0; i < this.tasks.length; i++) {
               if(this.tasks[i].name==this.choosedTaskName) {
                   for(let j = 0; j < this.tasks[i].subTask.length; j++){
-                      if(this.tasks[i].subTask[j].subname==subTaskElem.subname){
-                          console.log("zhaodaol");
+                       console.log("Jinru l");
+                      if(this.tasks[i].subTask[j]==subTaskElem){
+                             console.log("zhaodaol");
                           this.tasks[i].subTask.splice(j,1);
                           isDel=1;
                           break;

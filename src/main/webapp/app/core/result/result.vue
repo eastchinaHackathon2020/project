@@ -6,88 +6,44 @@
                 <h2>您的</h2>
             </div>
         </div>
-        <div class="jumbotron1 masthead1">
-            <div class="container">
-                <div style="display: flex">
-                    <h4 style="font-size: 25px;color: black;font-weight: normal;margin-left: 30px">数组越界</h4>
-                    <div style="width: 15px;height: 15px;background-color: #cff6cf;margin-top: 10px;margin-left: 15px"></div>
-                    <h4 style="font-size: 25px;color: black;font-weight: normal;margin-left: 30px">慢速內存操作</h4>
-                    <div style="width: 15px;height: 15px;background-color: #dbe2ef;margin-top: 10px;margin-left: 15px"></div>
-                    <h4 style="font-size: 25px;color: black;font-weight: normal;margin-left: 30px">类型不匹配</h4>
-                    <div style="width: 15px;height: 15px;background-color: #ddf3f5;margin-top: 10px;margin-left: 15px"></div>
-                    <h4 style="font-size: 25px;color: black;font-weight: normal;margin-left: 30px">大型变量</h4>
-                    <div style="width: 15px;height: 15px;background-color: #fce8d5;margin-top: 10px;margin-left: 15px"></div>
-                    <h4 style="font-size: 25px;color: black;font-weight: normal;margin-left: 30px">空指针</h4>
-                    <div style="width: 15px;height: 15px;background-color: #efc7c6;margin-top: 10px;margin-left: 15px"></div>
-                    <h4 style="font-size: 25px;color: black;font-weight: normal;margin-left: 30px">指针多重释放</h4>
-                    <div style="width: 15px;height: 15px;background-color: #b4ecef;margin-top: 10px;margin-left: 15px"></div>
-                </div>
+        <div>
+            <b-card no-body class="overflow-hidden" style="max-height: 400px;">
+                <b-row no-gutters>
 
-                <pre v-highlightjs=codeDate ><code class="c++">
-{{this.codeContent}}
-                </code></pre>
-                <hr>
-            </div>
+                    <b-col md="5">
+                        <b-card-body :title="thisProject.githubAddress">
+                            <b-card-text>
+                                This is a wider card with supporting text as a natural lead-in to additional content.
+                                This content is a little bit longer.
+                            </b-card-text>
+                        </b-card-body>
+                    </b-col>
+                    <b-col md="7">
+                        <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+                    </b-col>
+                </b-row>
+            </b-card>
         </div>
     </div>
 </template>
 
 <script>
-    import $ from 'jquery'
+
 
     export default {
         name: "Result",
         data() {
             return{
-                codeContent:'',
-                warningList:[],
+                thisProject:{},
                 warn:'',
                 index:0,
             }
         },
         created(){
-            this.codeContent=this.$store.getters.content
-            this.warningList=this.$store.getters.warning.split("\n")
-            console.log(this.warningList)
+            this.thisProject=this.$store.getters.thisProject
         },
         mounted() {
-            $("code").each(function(){
-                $(this).html("<ol>" + $(this).html().replace(/\n/g,"\n</li><li>") +"\n</ol>");
-            });
-            let i=0
-            for(i=0;i<this.warningList.length;i++){
-                this.warn=this.warningList[i].split(":")
-                this.index=parseInt(this.warn[1])
 
-                if(this.warn[3]){
-                    console.log(this.warn)
-                    console.log(this.warn[3])
-                    console.log(Boolean(this.warn[3]=="慢速内存"))
-                    if(Boolean(this.warn[3]=="慢速内存")){
-                        console.log('aaa')
-                        $("li:nth-child("+this.index+")").css({"background-color":"#dbe2ef"});
-                    }else if(Boolean(this.warn[3].toString()==="數組越界")){
-                        console.log('aaa')
-                        $("li:nth-child("+this.index+")").css({"background-color":"#cff6cf"});
-                    }else if(Boolean(this.warn[3].toString()==="类型不匹配")){
-                        console.log('aaa')
-                        $("li:nth-child("+this.index+")").css({"background-color":"#ddf3f5"});
-                        $("li:nth-child("+this.index+")").append("&nbsp;&nbsp;&nbsp;&nbsp;报错信息：不匹配的类型为"+this.warn[4]);
-                    }else if(Boolean(this.warn[3].toString()==="大型变量")){
-                        console.log('aaa')
-                        $("li:nth-child("+this.index+")").css({"background-color":"#fce8d5"});
-                        $("li:nth-child("+this.index+")").append("&nbsp;&nbsp;&nbsp;&nbsp;报错信息："+this.warn[4]);
-                    } else if(this.warn[3].toString()==="空指针"){
-                        console.log('aaa')
-                        $("li:nth-child("+this.index+")").css({"background-color":"#efc7c6"});
-                        $("li:nth-child("+this.index+")").append("&nbsp;&nbsp;&nbsp;&nbsp;报错信息："+this.warn[4]);
-                    } else if(Boolean(this.warn[3].toString()==="double free")){
-                        console.log('aaa')
-                        $("li:nth-child("+this.index+")").css({"background-color":"#b4ecef"});
-                        $("li:nth-child("+this.index+")").append("&nbsp;&nbsp;&nbsp;&nbsp;报错信息："+this.warn[4]);
-                    }
-                }
-            }
     }
     }
 </script>
@@ -154,12 +110,6 @@
         color: #fff;
     }
 
-    .masthead1 {
-        padding: 0px 0 0px;
-        margin-bottom: 0px;
-        margin-top: 0px;
-        color: #fff;
-    }
 
     .jumbotron {
         position: relative;
@@ -173,14 +123,5 @@
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020031",endColorstr="#6d3353",GradientType=1);
         box-shadow: inset 0 3px 7px rgba(255,255,255,0), inset 0 -3px 7px rgba(255,255,255,0);
     }
-    .jumbotron1 {
-        position: relative;
-        padding: 10px 10px;
-        color: #fff;
-        text-align: left;
-        background: #020031;
-        background: linear-gradient(45deg,#fff,#fff);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020031",endColorstr="#6d3353",GradientType=1);
-        box-shadow: inset 0 3px 7px rgba(255,255,255,.75), inset 0 -3px 7px rgba(255,255,255,.2);
-    }
+
 </style>
