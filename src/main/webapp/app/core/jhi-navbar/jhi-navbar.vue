@@ -23,7 +23,7 @@
                 <b-nav-item to="/record" exact v-if="authenticated">
                     <span>
                         <font-awesome-icon icon="book" />
-                        <span>检测记录</span>
+                        <span>历史记录</span>
                     </span>
                 </b-nav-item>
 

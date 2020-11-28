@@ -10,7 +10,7 @@
         <b-list-group flush style="margin-top: 30px">
             <b-list-group-item>
                 <div style="display: flex;justify-content:space-between;">
-                    <h1 style="font-size: 23px;font-weight: bold;width: 400px;text-align: left">项目地址</h1>
+                    <h1 style="font-size: 23px;font-weight: bold;width: 400px;text-align: left">项目名称</h1>
 <!--                    <h1 style="font-size: 23px;font-weight: bold;width: 400px;text-align: left">报错数</h1>-->
                     <h1 style="font-size: 23px;font-weight: bold;text-align: right">图片路径</h1>
                 </div>
@@ -36,66 +36,6 @@
         data(){
             return{
                 allProjects:[
-                 /* {
-                     imgUrl:"https://www.jb51.net/article/185112.htm",
-                     githubAddress:"asdfsaddsasdagdsagsdagdsg",
-                     tasks:
-                     [
-                        {
-                            name: "task1",
-                            subTask: ["subtask1", "subtask2", "subtask3"]
-                        },
-                        {
-                            name: "task2",
-                            subTask: ["subtask4", "subtask5", "subtask6"],
-
-                        },
-                        {
-                            name: "task3",
-                            subTask: ["subtask6", "subtask1", "subtask8"],
-                        }
-                    ]
-                },
-                {
-                    imgUrl:"https://www.jbdfa51.net/article/185112.htm",
-                    githubAddress:"asdfsaddsasdadsfasfagdsagsdagdsg",
-                    tasks:
-                        [
-                            {
-                                name: "task9",
-                                subTask: ["subtask1", "subtask2", "subtask3"]
-                            },
-                            {
-                                name: "task31",
-                                subTask: ["subtask4", "subtask5", "subtask6"],
-
-                            },
-                            {
-                                name: "task34",
-                                subTask: ["subtask6", "subtask1", "subtask8"],
-                            }
-                        ]
-                },
-                {
-                    imgUrl:"https://www.jb51.net/article/185112.htm",
-                    githubAddress:"asdfsaddsasdagdsagsdagdsg",
-                    tasks:
-                        [
-                            {
-                                name: "task10",
-                                subTask: ["subtask1", "subtask2", "subtask3"]
-                            },
-                            {
-                                name: "task18",
-                                subTask: ["subtask4", "subtask5", "subtask6"],
-
-                            },
-                            {
-                                name: "task123",
-                                subTask: ["subtask6", "subtask1", "subtask8"],
-                            }
-                        ]
-                } */
 
                 ],
 
@@ -119,11 +59,13 @@
                 .then(result=>{
                     //this.allProjects=result.data.content;
                     for(let i=0;i<result.data.content.length;i++){
+                        let reponame=result.data.content[i].repoUrl
+                        //console.log(reponame.split("/")[reponame.split("/").length-1])
+                        reponame=reponame.split("/")[reponame.split("/").length-1];
                         this.allProjects.push({
                             imgUrl:result.data.content[i].imageUrl,
-                            githubAddress:result.data.content[i].repoUrl,
+                            githubAddress:reponame  ,
                             tasks:result.data.content[i].tasks,
-                        
                         });
                     }
                     console.log(this.allProjects);
