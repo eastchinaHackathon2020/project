@@ -36,7 +36,7 @@
         data(){
             return{
                 allProjects:[
-                 {
+                 /* {
                      imgUrl:"https://www.jb51.net/article/185112.htm",
                      githubAddress:"asdfsaddsasdagdsagsdagdsg",
                      tasks:
@@ -95,7 +95,7 @@
                                 subTask: ["subtask6", "subtask1", "subtask8"],
                             }
                         ]
-                }
+                } */
 
                 ],
 
@@ -107,13 +107,30 @@
         },
         async mounted() {
             console.log(this.$store.getters.account.id)
-            axios
+            /* axios
                 .get('api/'+this.$store.getters.account.id+'/getUserRecord')
                 .then(result => {
                     console.log(result)
                     this.myResList=result.data;
                     console.log(this.myResList)
-                });
+                }); */
+            axios
+            .get('api/userProject/'+this.$store.getters.account.id)
+                .then(result=>{
+                    //this.allProjects=result.data.content;
+                    for(let i=0;i<result.data.content.length;i++){
+                        this.allProjects.push({
+                            imgUrl:result.data.content[i].imageUrl,
+                            githubAddress:result.data.content[i].repoUrl,
+                            tasks:result.data.content[i].tasks,
+                        
+                        });
+                    }
+                    console.log(this.allProjects);
+            });
+            /* imgUrl:"https://www.jb51.net/article/185112.htm",
+                    githubAddress:"asdfsaddsasdagdsagsdagdsg",
+                    tasks: */
         },
         methods:{
             jumpToDetail(project){
