@@ -18,7 +18,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="repo_url" type="varchar(256)"/>
-            <column name="commit_num" type="int"/>
+            <column name="sha" type="varchar(256)"/>
             <column name="image_url" type="varchar(256)"/>
             <column name="api_url" type="varchar(256)"/>
             <column name="target_milestone" type="varchar(256)"/>

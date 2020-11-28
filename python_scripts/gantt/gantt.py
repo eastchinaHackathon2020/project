@@ -263,5 +263,5 @@ if __name__ == '__main__':
     g = Gantt(file_name+".json")
 
     g.render()
-    g.show()
+    # g.show()
     g.save(file_name+".png")

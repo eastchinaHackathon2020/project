@@ -23,8 +23,8 @@ public class Project implements Serializable {
     private String repoUrl;
 
     @NotNull
-    @Column(name = "commit_num", nullable = false)
-    private Integer commitNum;
+    @Column(name = "sha", nullable = false)
+    private String sha;
 
     @NotNull
     @Column(name = "image_url", nullable = false)
@@ -62,12 +62,12 @@ public class Project implements Serializable {
         this.repoUrl = repoUrl;
     }
 
-    public Integer getCommitNum() {
-        return commitNum;
+    public String getSha() {
+        return sha;
     }
 
-    public void setCommitNum(Integer commitNum) {
-        this.commitNum = commitNum;
+    public void setSha(String sha) {
+        this.sha = sha;
     }
 
     public String getImageUrl() {
@@ -112,7 +112,7 @@ public class Project implements Serializable {
         return "Project{" +
             "id=" + id +
             ", repoUrl='" + repoUrl + '\'' +
-            ", commitNum=" + commitNum +
+            ", sha='" + sha + '\'' +
             ", imageUrl='" + imageUrl + '\'' +
             ", apiUrl='" + apiUrl + '\'' +
             ", targetMilestone='" + targetMilestone + '\'' +

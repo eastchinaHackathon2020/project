@@ -22,12 +22,13 @@ public class ProjectServiceImpl implements IProjectService {
     public ResponseVO registerProject(FormVO formVO) {
         try{
             String api = revertToAPIURL(formVO.getProjectUrl());
+            String query = "?page=0&per_page=1&access_token=c23bf38ff1be1b9fd73e91a757181314b8e702ce";
             System.out.println(revertToAPIURL(formVO.getProjectUrl()));
-            String res = HttpClient4.doGet(api);
+            String res = HttpClient4.doGet(api+query);
             JSONArray jsonArray = JSONArray.parseArray(res);
             Project project = new Project();
             project.setUserId(formVO.getUserId());
-            project.setCommitNum(jsonArray.size());
+            project.setSha(jsonArray.getJSONObject(0).getString("sha"));
             project.setRepoUrl(formVO.getProjectUrl());
             project.setApiUrl(api);
             //TODO:modify image url
