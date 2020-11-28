@@ -30,6 +30,7 @@ import ConfigurationService from '@/admin/configuration/configuration.service';
 import VueHighlightJS from 'vue-highlightjs';
 import 'highlight.js/styles/atom-one-light.css';
 
+
 /* tslint:disable */
 
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here

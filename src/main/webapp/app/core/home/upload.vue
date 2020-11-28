@@ -3,30 +3,91 @@
         <div id="wrapper" v-if="!this.loading" style="background-color: white">
             <div class="jumbotron1 masthead1">
                 <h1>XAnalysis</h1>
-                <h2>简洁、直观的静态分析工具，让代码更安全、简单。</h2>
+                <h2>输入您需要添加插件的GitHub仓库地址</h2>
                 <hr>
-                <h3 style="font-size: 25px;font-weight: normal;margin-top: 30px">请上传您需要检测的CPP代码文件</h3>
-                <div class="uploadDiv1" style="padding-left: 320px;padding-right: 320px;margin-top: 30px">
-                    <uploader
-                        ref="uploader"
-                        :options="uploadOptions1"
-                        :autoStart="true"
-                        @file-added="onFileAdded1"
-                        @file-success="onFileSuccess1"
-                        @file-progress="onFileProgress1"
-                        @file-error="onFileError1"
-                        class="uploader-app"
-                        style="background-color: #035aa6"
-                    >
-                        <uploader-unsupport></uploader-unsupport>
-                        <uploader-drop sytle="background: linear-gradient(45deg,#43d8c9,#035aa6);">
-                            <uploader-btn style="margin-right:20px;" :attrs="attrs">选择文件</uploader-btn>
-                            <uploader-btn :attrs="attrs" directory>选择文件夹</uploader-btn>
-                        </uploader-drop>
-                        <uploader-list></uploader-list>
-                    </uploader>
+                <!-- <h3 style="font-size: 25px;font-weight: normal;margin-top: 30px">请上传您需要检测的CPP代码文件</h3> -->
+                <div style="padding-left: 320px;padding-right: 320px;margin-top: 30px">
+                    <b-input-group class="mt-3">
+                        <b-form-input></b-form-input>
+                        <b-input-group-append>
+<!--                            <b-button variant="success"  @click="this.$bvModal.show('bv-modal-example')">确认</b-button>-->
+                            <b-button variant="success" @click="modalShow = !modalShow">确认</b-button>
+                        </b-input-group-append>
+                    </b-input-group>
+
+
+
+
+                    <b-modal id="bv-modal-example" hide-footer v-model="modalShow">
+                        <template #modal-title>
+<!--                        Using <code>$bvModal</code> Methods-->
+                            <div>请设置您的项目</div>
+                        </template>
+                        <div class="d-block "  style="min-height:450px; height:auto" >
+                            <div  style="display: flex;justify-content:space-between">
+                                <div style="color:#3E8ACC;padding-left: 30px" v-model="choosedTaskName" >{{"Now: "+choosedTaskName}}</div>
+                                <b-button
+                                    variant="link"
+                                    size="sm"
+                                    style="color:#28a745;padding-right: 30px"
+                                    @click="choosedTaskName='/' "
+                                >Back
+                                </b-button>
+                            </div>
+
+                            <b-input-group  style="margin-top: 0;padding:0 20px 20px 30px;" size="sm">
+                                <b-form-input v-model="addTaskName=value"></b-form-input>
+                                <b-input-group-append>
+                                    <!--                            <b-button variant="success"  @click="this.$bvModal.show('bv-modal-example')">确认</b-button>-->
+                                    <b-button variant="info"  size="sm" @click="addTask()">Add</b-button>
+                                </b-input-group-append>
+                            </b-input-group>
+
+                            <div  v-for="taskElem in this.tasks"  style=" margin-left:50px;margin-right: 30px;margin-top: 10px ;display: flex;justify-content:space-around;align-items: center">
+                                <b-dropdown
+                                    block
+                                    split
+                                    split-variant="outline-primary"
+                                    variant="primary"
+                                    :text="taskElem.name"
+                                    @click="chooseTask(taskElem)"
+                                    size="sm"
+                                    style="width: 270px;margin-right:10px  "
+                                >
+                                    <div href="#"
+                                                     v-for="subTaskElem in taskElem.subTask"
+                                                     style="width: 270px; height: 30px;display: flex;justify-content:space-between;align-items: center"
+                                    >
+                                        <div style="padding-left: 20px">{{ subTaskElem.subname }}</div>
+                                        <b-button
+                                            variant="link"
+                                            size="sm"
+                                            style="padding-right: 20px"
+                                            @click="delSubTask(subTaskElem)"
+                                        >remove
+                                        </b-button>
+
+                                    </div>
+
+    <!--                                    <b-button-->
+    <!--                                        @click="removeTag(tag)"-->
+    <!--                                        variant="link"-->
+    <!--                                        size="sm"-->
+    <!--                                        :aria-controls="`my-custom-tags-tag_${tag.replace(/\s/g, '_')}_`"-->
+    <!--                                    >remove</b-button>-->
+
+                                </b-dropdown>
+                                <b-button variant="outline-danger" @click="delTask(taskElem)" size="sm">DEL</b-button>
+                            </div>
+<!--                        <h3>Hello From This Modal!</h3>-->
+                        </div>
+<!--                        <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Close Me</b-button>-->
+                        <b-button class="mt-3" block @click="modalShow = !modalShow">Close Me</b-button>
+                    </b-modal>
                 </div>
+
             </div>
+
         </div>
 
         <div id="wrapper1" v-if="this.loading">
@@ -65,10 +126,55 @@ export default{
     name: "Upload",
     data() {
     return {
+      //!!
+        modalShow:false,
+        choosedTaskName:"/",
+        addTaskName:"",
+      //
+      formshow:false,
       loading:false,
       panelShow: false, //选择文件后，展示上传panel
       collapse: false,
       files: [],
+
+      // 添加任务阶段并不涉及到 id！！
+        tasks:[
+            {
+                name:"task1",
+
+                subTask:[
+                    {
+                        subname:"subTask1",
+                    },
+                    {
+                        subname:"subTask4",
+                    },
+                    {
+                        subname:"subTask7",
+                    },
+                ]
+            },
+            {
+                name:"task2",
+
+                subTask:[
+                    {
+                        subname:"subTask2",
+                    }
+                ]
+            },
+            {
+                name:"task3",
+
+                subTask:[
+                    {
+                        subname:"subTask3",
+
+                    }
+                ]
+            },
+        ],
+      //
       uploadOptions1: {
         target: "//localhost:8080/upload/single",//上传的接口
         testChunks: false, //是否开启服务器分验
@@ -85,6 +191,61 @@ export default{
   },
 
   methods: {
+    showform(){
+        this.formshow=true;
+    },
+    //
+      chooseTask(taskElem){
+        this.choosedTaskName=taskElem.name;
+
+
+      },
+      addTask(){
+          // console.log(this.addTaskName);
+          if(this.choosedTaskName!="/"){
+          //    find task
+              for(let i = 0; i < this.tasks.length; i++) {
+                  if(this.tasks[i].name==this.choosedTaskName) {
+                      this.tasks[i].subTask.push({subname: this.addTaskName});
+                      break;
+                  }
+              }
+          }else {
+          //    直接添加到主任务下。
+             this.tasks.push({name:this.addTaskName,subTask:[]});
+          }
+      },
+      delTask(taskElem){
+          console.log("del");
+          console.log(taskElem.name);
+          for(let i = 0; i < this.tasks.length; i++) {
+              if(this.tasks[i].name==taskElem.name) {
+                  this.tasks.splice(i,1);
+                  break;
+              }
+          }
+      },
+      delSubTask(subTaskElem){
+          console.log("delSub");
+          console.log(subTaskElem.subname);
+          var isDel=0;
+          for(let i = 0; i < this.tasks.length; i++) {
+              if(this.tasks[i].name==this.choosedTaskName) {
+                  for(let j = 0; j < this.tasks[i].subTask.length; j++){
+                      if(this.tasks[i].subTask[j].subname==subTaskElem.subname){
+                          console.log("zhaodaol");
+                          this.tasks[i].subTask.splice(j,1);
+                          isDel=1;
+                          break;
+                      }
+                  }
+                  if(isDel==1){
+                      break;
+                  }
+              }
+          }
+      },
+    //
     onFileAdded1(file) {
       console.log(file);
     },
