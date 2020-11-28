@@ -8,7 +8,7 @@
                 <!-- <h3 style="font-size: 25px;font-weight: normal;margin-top: 30px">请上传您需要检测的CPP代码文件</h3> -->
                 <div style="padding-left: 320px;padding-right: 320px;margin-top: 30px">
                     <b-input-group class="mt-3">
-                        <b-form-input></b-form-input>
+                        <b-form-input v-model="form.projectUrl"></b-form-input>
                         <b-input-group-append>
 <!--                            <b-button variant="success"  @click="this.$bvModal.show('bv-modal-example')">确认</b-button>-->
                             <b-button variant="success" @click="modalShow = !modalShow">确认</b-button>
@@ -82,7 +82,7 @@
 <!--                        <h3>Hello From This Modal!</h3>-->
                         </div>
 <!--                        <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Close Me</b-button>-->
-                        <b-button class="mt-3" block @click="modalShow = !modalShow">Close Me</b-button>
+                        <b-button variant="success" class="mt-3" block @click="submitProject()">确定</b-button>
                     </b-modal>
                 </div>
 
@@ -120,12 +120,19 @@
 
 <script>
 import { merge } from "../api/upload";
-import { Store } from 'vuex';
+import {registerProject} from "../api/project";
+import { Store,mapState } from 'vuex';
 
 export default{
     name: "Upload",
     data() {
     return {
+
+        form:{
+            userId:-1,
+            projectUrl:'',
+            targetMilestone:[],
+        },
       //!!
         modalShow:false,
         choosedTaskName:"/",
@@ -141,7 +148,6 @@ export default{
         tasks:[
             {
                 name:"task1",
-
                 subTask:[
                     {
                         subname:"subTask1",
@@ -175,7 +181,7 @@ export default{
             },
         ],
       //
-      uploadOptions1: {
+      /* uploadOptions1: {
         target: "//localhost:8080/upload/single",//上传的接口
         testChunks: false, //是否开启服务器分验
         fileParameterName: "file",//默认的文件参数名
@@ -184,13 +190,19 @@ export default{
         categaryMap: { //用于限制上传的类型
           document: ["gif", "jpg", "jpeg", "png", "bmp","cpp"],
         }
-      },
+      }, */
       attrs: {
       },
     }
   },
 
   methods: {
+    submitProject(){
+        this.modalShow = !this.modalShow;
+        this.form.userId=this.$store.getters.account.id;
+        console.log(this.form.projectUrl);
+        this.form.projectUrl='';
+    },
     showform(){
         this.formshow=true;
     },
