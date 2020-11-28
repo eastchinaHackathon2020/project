@@ -194,17 +194,26 @@ export default{
     submitProject(){
         this.modalShow = !this.modalShow;
         this.form.userId=this.$store.getters.account.id;
+<<<<<<< Updated upstream
         /* for(let i=0;i<this.tasks.length;i++){
             this.tasks[i]
         } */
         this.form.task=this.tasks;
         console.log(this.form.projectUrl);
+=======
+        this.form.targetMilestone=this.tasks;
+        console.log(this.form.targetMilestone);
+>>>>>>> Stashed changes
         axios
         .post('api/registerProject',this.form)
             .then(result => {
                 console.log(result)
         });
+<<<<<<< Updated upstream
        /*  axios
+=======
+        axios
+>>>>>>> Stashed changes
         .get('api/userProject/'+this.$store.getters.account.id)
             .then(result=>{
                 console.log(result);
