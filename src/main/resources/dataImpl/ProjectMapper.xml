@@ -1,0 +1,8 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.myapp.data.ProjectMapper">
+
+    <insert id="addProject" parameterType="com.mycompany.myapp.domain.Project">
+        insert into project(repo_url, commit_num, image_url, target_milestone, user_id) values
+        (#{repoUrl},#{commitNum},#{imageUrl},#{targetMilestone},#{userId})
+    </insert>
+</mapper>
