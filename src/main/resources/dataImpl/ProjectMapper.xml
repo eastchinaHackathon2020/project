@@ -1,12 +1,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.myapp.data.ProjectMapper">
 
-    <insert id="addProject" parameterType="com.mycompany.myapp.domain.Project">
+    <insert id="addProject" parameterType="com.mycompany.myapp.domain.Project" useGeneratedKeys="true" keyProperty="id">
         insert into project(repo_url, sha, image_url, target_milestone, user_id,api_url) values
         (#{repoUrl},#{sha},#{imageUrl},#{targetMilestone},#{userId},#{apiUrl})
     </insert>
+    <insert id="addTask" useGeneratedKeys="true" keyProperty="id">
+        insert into task (task, sub_task, project_id) values
+        (#{name},#{subTaskString},#{projectId});
+    </insert>
     <select id="getProjectByUserId" resultType="com.mycompany.myapp.domain.Project" resultMap="project">
         select * from project where user_id = #{userId}
+    </select>
+    <select id="getTaskByProjectId" resultType="com.mycompany.myapp.vo.TaskVO" resultMap="task">
+        select * from task where project_id = #{projectId}
     </select>
 
     <resultMap id="project" type="com.mycompany.myapp.domain.Project">
@@ -16,5 +23,10 @@
         <result column="api_url" property="apiUrl"/>
         <result column="target_milestone" property="targetMilestone"/>
         <result column="user_id" property="userId"/>
+    </resultMap>
+
+    <resultMap id="task" type="com.mycompany.myapp.vo.TaskVO">
+        <result column="project_id" property="projectId"/>
+        <result column="sub_task" property="subTaskString"/>
     </resultMap>
 </mapper>
