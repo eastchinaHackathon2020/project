@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/projectapi")
+@RequestMapping("/task")
 public class ProjectController {
     @Autowired
     IProjectService projectService;

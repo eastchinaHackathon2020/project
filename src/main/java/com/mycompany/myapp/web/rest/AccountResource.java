@@ -6,11 +6,14 @@ import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.RecordRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.security.SecurityUtils;
+import com.mycompany.myapp.service.IProjectService;
 import com.mycompany.myapp.service.MailService;
 import com.mycompany.myapp.service.UserService;
 import com.mycompany.myapp.service.dto.PasswordChangeDTO;
 import com.mycompany.myapp.service.dto.UserDTO;
+import com.mycompany.myapp.vo.FormVO;
 import com.mycompany.myapp.vo.RecVO;
+import com.mycompany.myapp.vo.ResponseVO;
 import com.mycompany.myapp.web.rest.errors.*;
 import com.mycompany.myapp.web.rest.vm.KeyAndPasswordVM;
 import com.mycompany.myapp.web.rest.vm.ManagedUserVM;
@@ -49,6 +52,20 @@ public class AccountResource {
     private final UserService userService;
 
     private final MailService mailService;
+
+    @Autowired
+    IProjectService projectService;
+
+    @ResponseBody
+    @PostMapping("/registerProject")
+    public ResponseVO registerProject(@RequestBody FormVO formVO){
+        return projectService.registerProject(formVO);
+    }
+
+    @GetMapping("/userProject/{userId}")
+    public ResponseVO getUserProject(@PathVariable("userId") String userId){
+        return projectService.userProject(userId);
+    }
 
     public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
 
