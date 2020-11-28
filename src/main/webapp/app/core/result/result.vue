@@ -2,8 +2,8 @@
     <div id="result" style="background-color: white">
         <div class="jumbotron masthead">
             <div class="container">
-                <h1>XAnalysis</h1>
-                <h2>您的</h2>
+                <h1>Visual Gitwork</h1>
+                <h2>您的仓库信息与Gantt图</h2>
             </div>
         </div>
         <div>
@@ -61,6 +61,7 @@
                 thisProject:{},
                 warn:'',
                 index:0,
+                boxTwo: ''
             }
         },
         created(){
@@ -78,6 +79,23 @@
                 clipboard.on('error', function () {
                 _this.$toast("复制失败")
                 });
+                this.boxTwo = ''
+                        this.$bvModal.msgBoxOk(' ', {
+                        title: '图片链接已复制',
+                        size: 'sm',
+                        buttonSize: 'sm',
+                        okVariant: 'success',
+                        headerClass: 'p-2 border-bottom-0',
+                        footerClass: 'p-2 border-top-0',
+                        centered: true
+                        })
+                        .then(value => {
+                            this.boxTwo = value
+                        })
+                        .catch(err => {
+                            // An error occurred
+                        })
+
             }
             // copy() {
             //     var clipboard = new Clipboard('.tag-read');
