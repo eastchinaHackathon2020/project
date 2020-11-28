@@ -32,6 +32,10 @@ import 'highlight.js/styles/atom-one-light.css';
 
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import clipboard from 'clipboard';
+//注册到vue原型上
+Vue.prototype.clipboard = clipboard;
+
 /* tslint:disable */
 
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here

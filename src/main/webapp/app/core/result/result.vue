@@ -12,7 +12,9 @@
 
                     <b-col md="5">
                         <b-card-body :title="thisProject.githubAddress">
-                            <a src="#"   style="color:#43AB5B">{{thisProject.imgUrl}}</a>
+                            <a src="#"   style="color:#43AB5B">
+                                <span data-clipboard-action="copy" class="cobyOrderSn" :data-clipboard-text="thisProject.imgUrl" @click="copyLink">{{thisProject.imgUrl}}</span>
+                            </a>
                             <b-card-text style="margin-top: 30px">
 <!--                            <b-card-text>-->
 <!--                                This is a wider card with supporting text as a natural lead-in to additional content.-->
@@ -41,7 +43,7 @@
                         </b-card-body>
                     </b-col>
                     <b-col md="7">
-                        <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+                        <b-card-img :src="thisProject.imgUrl" alt="Image" class="rounded-0"></b-card-img>
                     </b-col>
                 </b-row>
             </b-card>
@@ -67,6 +69,16 @@
         mounted() {
     },
         methods:{
+            copyLink() {
+                let _this = this;
+                let clipboard = new this.clipboard(".cobyOrderSn");
+                clipboard.on('success', function () {
+                _this.$toast("复制成功")
+                });
+                clipboard.on('error', function () {
+                _this.$toast("复制失败")
+                });
+            }
             // copy() {
             //     var clipboard = new Clipboard('.tag-read');
             //     clipboard.on('success', e => {
