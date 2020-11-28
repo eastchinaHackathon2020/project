@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONException;
 import com.mycompany.myapp.data.ProjectMapper;
 import com.mycompany.myapp.domain.Project;
 import com.mycompany.myapp.service.IProjectService;
+import com.mycompany.myapp.util.GanttServer;
 import com.mycompany.myapp.util.HttpClient4;
 import com.mycompany.myapp.vo.FormVO;
 import com.mycompany.myapp.vo.ProjectVO;
@@ -47,13 +48,13 @@ public class ProjectServiceImpl implements IProjectService {
             project.setSha(jsonArray.getJSONObject(0).getString("sha"));
             project.setRepoUrl(formVO.getProjectUrl());
             project.setApiUrl(api);
-            //TODO:modify image url
-            project.setImageUrl("https://gitvisual.oss-cn-beijing.aliyuncs.com/testt.png");
             String t = "";
             for (String temp : formVO.getTargetMilestone()) {
                 t += temp + ';';
             }
             project.setTargetMilestone(t);
+            String imageUrl = GanttServer.getImageUrl(api,t);
+            project.setImageUrl(imageUrl);
             projectMapper.addProject(project);
             for(TaskVO taskVO:formVO.getTask()){
                 String subTask = "";

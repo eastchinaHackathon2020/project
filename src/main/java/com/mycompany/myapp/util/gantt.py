@@ -14,6 +14,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import rc
 
+
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
+plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+
 # TeX support: on Linux assume TeX in /usr/bin, on OSX check for texlive
 if (platform.system() == 'Darwin') and 'tex' in os.getenv("PATH"):
     LATEX = True
@@ -25,9 +29,9 @@ else:
 # setup pyplot w/ tex support
 if LATEX:
     rc('text', usetex=True)
-
-plt.rcParams['font.sans-serif'] = ['Hiragino Sans GB']  # 用来正常显示中文标签
-plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+#
+# plt.rcParams['font.sans-serif'] = ['Hiragino Sans GB']  # 用来正常显示中文标签
+# plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 class Package():
     """Encapsulation of a work package
 
@@ -85,6 +89,7 @@ class Gantt():
         self.labels = []
 
         self._loadData()
+
         self._procData()
 
     def _loadData(self):
@@ -93,9 +98,8 @@ class Gantt():
             a label, start and end property and optional milesstones
             and color specs.
         """
-
         # load data
-        with open(self.dataFile) as fh:
+        with open(self.dataFile,encoding='UTF-8') as fh:
             data = json.load(fh)
 
         # must-haves
@@ -105,6 +109,7 @@ class Gantt():
             self.packages.append(Package(pkg))
 
         self.labels = [pkg['label'] for pkg in data['packages']]
+
 
         # optionals
         self.milestones = {}
@@ -226,7 +231,8 @@ class Gantt():
         for pkg in self.packages:
             colors.append(pkg.color)
 
-        self.barlist = plt.barh(self.yPos, list(self.durations),
+        self.barlist = plt.barh(self.yPos,
+                                list(self.durations),
                                 left=self.start,
                                 align='center',
                                 height=.5,
@@ -256,12 +262,15 @@ class Gantt():
 if __name__ == '__main__':
     # for i in range(1, len(sys.argv)):
     #     file_name = sys.argv[i]
-
+    # g= Gantt("sample.json")
     # 接收参数,并去除后缀
     file_name = sys.argv[1][:-5]
+
+    # print(file_name)
 
     g = Gantt(file_name+".json")
 
     g.render()
+
     # g.show()
     g.save(file_name+".png")

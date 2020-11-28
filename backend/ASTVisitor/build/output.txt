@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+// Begin function inc returning int
+int inc(int a)
+{
+    return a++;
+}
+// End function inc
+
+
+// Begin function main returning int
+int main()
+{
+    int a =0;
+    for(int i=0;i<10;i++)
+    {
+        a = inc(a);
+    }
+    // the 'if' part
+    if(a>1)
+    {
+        printf("maior\n");
+    }
+    else
+    // the 'else' part
+    {
+        printf("menor\n");
+    }
+
+    return 0;
+}
+// End function main
