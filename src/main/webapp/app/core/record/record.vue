@@ -2,8 +2,8 @@
     <div id="record" style="background-color: white">
         <div class="jumbotron masthead">
             <div class="container">
-                <h1>XAnalysis</h1>
-                <h2>您的代码检测记录如下</h2>
+                <h1>Visual Gitwork</h1>
+                <h2>您的历史仓库如下</h2>
             </div>
         </div>
 

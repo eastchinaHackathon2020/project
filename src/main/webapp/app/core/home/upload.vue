@@ -2,7 +2,7 @@
     <div style="height: 100%">
         <div id="wrapper" v-if="!this.loading" style="background-color: white">
             <div class="jumbotron1 masthead1">
-                <h1>XAnalysis</h1>
+                <h1>Visual Gitwork</h1>
                 <h2>输入您需要添加插件的GitHub仓库地址</h2>
                 <hr>
                 <!-- <h3 style="font-size: 25px;font-weight: normal;margin-top: 30px">请上传您需要检测的CPP代码文件</h3> -->
