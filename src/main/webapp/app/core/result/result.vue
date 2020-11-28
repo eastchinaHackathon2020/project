@@ -3,7 +3,7 @@
         <div class="jumbotron masthead">
             <div class="container">
                 <h1>XAnalysis</h1>
-                <h2>开始查看您的代码分析结果</h2>
+                <h2>您的</h2>
             </div>
         </div>
         <div class="jumbotron1 masthead1">

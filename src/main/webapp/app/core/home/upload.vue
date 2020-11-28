@@ -28,18 +28,18 @@
                                 <div style="color:#3E8ACC;padding-left: 30px" v-model="choosedTaskName" >{{"Now: "+choosedTaskName}}</div>
                                 <b-button
                                     variant="link"
-                                    size="sm"
+                                    size=""
                                     style="color:#28a745;padding-right: 30px"
                                     @click="choosedTaskName='/' "
                                 >Back
                                 </b-button>
                             </div>
 
-                            <b-input-group  style="margin-top: 0;padding:0 20px 20px 30px;" size="sm">
+                            <b-input-group  style="margin-top: 0;padding:0 20px 20px 30px;" size="">
                                 <b-form-input v-model="addTaskName=value"></b-form-input>
                                 <b-input-group-append>
                                     <!--                            <b-button variant="success"  @click="this.$bvModal.show('bv-modal-example')">确认</b-button>-->
-                                    <b-button variant="info"  size="sm" @click="addTask()">Add</b-button>
+                                    <b-button variant="info"  size="" @click="addTask()">Add</b-button>
                                 </b-input-group-append>
                             </b-input-group>
 
@@ -51,7 +51,7 @@
                                     variant="primary"
                                     :text="taskElem.name"
                                     @click="chooseTask(taskElem)"
-                                    size="sm"
+                                    size=""
                                     style="width: 270px;margin-right:10px  "
                                 >
                                     <div href="#"
@@ -61,7 +61,7 @@
                                         <div style="padding-left: 20px">{{ subTaskElem.subname }}</div>
                                         <b-button
                                             variant="link"
-                                            size="sm"
+                                            size=""
                                             style="padding-right: 20px"
                                             @click="delSubTask(subTaskElem)"
                                         >remove
@@ -72,12 +72,12 @@
     <!--                                    <b-button-->
     <!--                                        @click="removeTag(tag)"-->
     <!--                                        variant="link"-->
-    <!--                                        size="sm"-->
+    <!--                                        size=""-->
     <!--                                        :aria-controls="`my-custom-tags-tag_${tag.replace(/\s/g, '_')}_`"-->
     <!--                                    >remove</b-button>-->
 
                                 </b-dropdown>
-                                <b-button variant="outline-danger" @click="delTask(taskElem)" size="sm">DEL</b-button>
+                                <b-button variant="outline-danger" @click="delTask(taskElem)" size="">DEL</b-button>
                             </div>
 <!--                        <h3>Hello From This Modal!</h3>-->
                         </div>
@@ -246,7 +246,7 @@ export default{
           }
       },
     //
-    onFileAdded1(file) {
+    /* onFileAdded1(file) {
       console.log(file);
     },
     onFileProgress1(rootFile, file, chunk) {
@@ -261,7 +261,7 @@ export default{
         this.$router.push({name: 'Result'})
     },
     onFileError1(rootFile, file, response, chunk) {
-    }
+    } */
   }
 }
 </script>
