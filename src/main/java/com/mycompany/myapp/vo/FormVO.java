@@ -5,6 +5,7 @@ import java.util.List;
 public class FormVO {
     Long userId;      //用户id
     String projectUrl;  // 仓库地址
+    List<TaskVO> task;
     List<String> targetMilestone; // 里程碑
 
     public Long getUserId() {
@@ -29,5 +30,13 @@ public class FormVO {
 
     public void setTargetMilestone(List<String> targetMilestone) {
         this.targetMilestone = targetMilestone;
+    }
+
+    public List<TaskVO> getTask() {
+        return task;
+    }
+
+    public void setTask(List<TaskVO> task) {
+        this.task = task;
     }
 }
