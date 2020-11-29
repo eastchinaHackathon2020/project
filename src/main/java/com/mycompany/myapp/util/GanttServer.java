@@ -17,9 +17,9 @@ public class GanttServer {
 
 
         String pathroot = "D:\\JavaSpace\\华东hackathon2020\\SEexperiement-master\\json\\";
-    String baseFileName = extractMessage("https://api.github.com/repos/courses-at-nju-by-hfwei/compilers-lectures/commits", "3-parser;2-lexer;1-overview;");
-//            String baseFileName = extractMessage("https://api.github.com/repos/eastchinaHackathon2020/testcase/commits", "1-商业模式;2-需求获取;3-需求规格;4-体系结构;5-前端;6-后端;");
-        doPy("D:\\JavaSpace\\华东hackathon2020\\hackthonPNG\\hackthonPNG\\test\\src\\main\\src/gantt/gantt.py",pathroot+baseFileName+".json");
+//    String baseFileName = extractMessage("https://api.github.com/repos/courses-at-nju-by-hfwei/compilers-lectures/commits", "3-parser;2-lexer;1-overview;");
+            String baseFileName = extractMessage("https://api.github.com/repos/eastchinaHackathon2020/testcase/commits", "1-商业模式;2-需求获取;3-需求规格;4-体系结构;5-前端;6-后端;");
+        doPy("D:\\JavaSpace\\华东hackathon2020\\SEexperiement-master\\src\\main\\java\\com\\mycompany\\myapp\\util\\gantt.py",pathroot+baseFileName+".json");
     //        doPy("/Users/woooodyy/Documents/study/2020Autumn/hackthonPNG/test/gantt2.py","/Users/woooodyy/Documents/study/2020Autumn/hackthonPNG/test/"+baseFileName+".json");
         //用来返回前端
             String imageUrl  = OSSServer.uploadImage(pathroot+baseFileName+".png");
@@ -77,8 +77,9 @@ public class GanttServer {
             List<Commit> commits = new ArrayList<>();
             JSONArray jsonArray;
             do {
-                String res = HttpClient4.doGet(apiUrl + "?page=" + page + "&per_page=" + per_page + "&access_token=c23bf38ff1be1b9fd73e91a757181314b8e702ce");
-//                System.out.println(res);
+                String res = HttpClient4.doGet(apiUrl + "?page=" + page + "&per_page=" + per_page + "&access_token=ff24201d7421725d526b6e4536762c62dfa909fc");
+//                String res = HttpClient4.doGet(apiUrl + "?page=" + page + "&per_page=" + per_page);
+                System.out.println(res);
                 page++;
                 jsonArray = JSONArray.parseArray(res);
                 System.out.println(jsonArray.size());

@@ -39,7 +39,7 @@ public class ProjectServiceImpl implements IProjectService {
         try {
             // 请求，判断是否有效，无效返回failure
             String api = revertToAPIURL(formVO.getProjectUrl());
-            String query = "?page=0&per_page=1&access_token=c23bf38ff1be1b9fd73e91a757181314b8e702ce";
+            String query = "?page=0&per_page=1&access_token=ff24201d7421725d526b6e4536762c62dfa909fc";
             System.out.println(revertToAPIURL(formVO.getProjectUrl()));
             String res = HttpClient4.doGet(api + query);
             JSONArray jsonArray = JSONArray.parseArray(res);
