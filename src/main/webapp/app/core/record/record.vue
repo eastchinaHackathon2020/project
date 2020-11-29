@@ -76,6 +76,7 @@
         },
         methods:{
             jumpToDetail(project){
+                //console.log("here",project)
                 this.$store.commit('setProject',project)
                 //将当前的project commit到store
                 this.$router.push({name: 'Result'})

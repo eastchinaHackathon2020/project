@@ -24,7 +24,7 @@
                             <div>请设置您的项目</div>
                         </template>
                         <div class="d-block "  style="min-height:450px; height:auto" >
-                            <div  style="display: flex;justify-content:space-between">
+                            <div  style="display: flex;justify-content:space-between;align-items: center; ">
                                 <div style="color:#3E8ACC;padding-left: 30px" v-model="choosedTaskName" >{{"Now: "+choosedTaskName}}</div>
                                 <b-button
                                     variant="link"
@@ -205,6 +205,7 @@ export default{
             .then(result => {
                 console.log(result);
                 this.form.projectUrl='';
+                this.$router.push({name: 'Record'});
         });
         
 
