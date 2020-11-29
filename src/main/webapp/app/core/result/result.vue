@@ -43,7 +43,11 @@
                         </b-card-body>
                     </b-col>
                     <b-col md="7">
-                        <b-card-img :src="thisProject.imgUrl" alt="Image" class="rounded-0"></b-card-img>
+                        <b-card-img :src="thisProject.imgUrl" alt="Image" class="rounded-0" style=" width: auto;
+    height: auto;
+    max-width: 90%;
+    max-height: 90%;
+"></b-card-img>
                     </b-col>
                 </b-row>
             </b-card>
