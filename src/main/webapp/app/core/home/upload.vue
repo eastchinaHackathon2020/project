@@ -2,7 +2,7 @@
     <div style="height: 100%">
         <div id="wrapper" v-if="!this.loading" style="background-color: white">
             <div class="jumbotron1 masthead1">
-                <h1>XAnalysis</h1>
+                <h1>Visual Gitwork</h1>
                 <h2>输入您需要添加插件的GitHub仓库地址</h2>
                 <hr>
                 <!-- <h3 style="font-size: 25px;font-weight: normal;margin-top: 30px">请上传您需要检测的CPP代码文件</h3> -->
@@ -198,14 +198,15 @@ export default{
             this.tasks[i]
         } */
         this.form.task=this.tasks;
-        console.log(this.form.projectUrl);
+        
+        //console.log(this.form.projectUrl);
         axios
         .post('api/registerProject',this.form)
             .then(result => {
-                console.log(result)
+                console.log(result);
+                this.form.projectUrl='';
         });
-
-        this.form.projectUrl='';
+        
 
     },
     showform(){

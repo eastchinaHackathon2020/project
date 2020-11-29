@@ -1,3 +1,11 @@
+/image/**
+/json/**
+/image/
+/json/
+/image/*
+/json/*
+
+
 ######################
 # Project Specific
 ######################
