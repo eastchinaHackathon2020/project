@@ -26,6 +26,7 @@
     </resultMap>
 
     <resultMap id="task" type="com.mycompany.myapp.vo.TaskVO">
+        <result column="task" property="name"/>
         <result column="project_id" property="projectId"/>
         <result column="sub_task" property="subTaskString"/>
     </resultMap>
