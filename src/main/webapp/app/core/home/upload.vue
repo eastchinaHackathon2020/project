@@ -205,6 +205,7 @@ export default{
             .then(result => {
                 console.log(result);
                 this.form.projectUrl='';
+                this.$router.push({name: 'Record'});
         });
         
 
