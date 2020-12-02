@@ -206,7 +206,7 @@ export default{
             .then(result => {
                 console.log(result);
                 this.form.projectUrl='';
-                this.$store.commit('setProject',this.form);
+                this.$router.push({name: 'Record'});
         });
 
         this.$router.push({name: 'Result'})

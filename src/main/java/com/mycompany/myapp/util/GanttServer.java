@@ -11,12 +11,30 @@ import java.util.HashMap;
 import java.util.List;
 
 public class GanttServer {
+    public static void main(String[] args) {
+//        String baseFileName = "compilers-lectures";
+//        String baseFileName = "testcase";
+
+
+        String pathroot = "D:\\JavaSpace\\华东hackathon2020\\SEexperiement-master\\json\\";
+//    String baseFileName = extractMessage("https://api.github.com/repos/courses-at-nju-by-hfwei/compilers-lectures/commits", "3-parser;2-lexer;1-overview;");
+            String baseFileName = extractMessage("https://api.github.com/repos/eastchinaHackathon2020/testcase/commits", "1-商业模式;2-需求获取;3-需求规格;4-体系结构;5-前端;6-后端;");
+        doPy("D:\\JavaSpace\\华东hackathon2020\\SEexperiement-master\\src\\main\\java\\com\\mycompany\\myapp\\util\\gantt.py",pathroot+baseFileName+".json");
+    //        doPy("/Users/woooodyy/Documents/study/2020Autumn/hackthonPNG/test/gantt2.py","/Users/woooodyy/Documents/study/2020Autumn/hackthonPNG/test/"+baseFileName+".json");
+        //用来返回前端
+            String imageUrl  = OSSServer.uploadImage(pathroot+baseFileName+".png");
+        System.out.println(imageUrl);
+    }
 
     public static String getImageUrl(String apiUrl,String targets) {
 
         String pathroot = "D:\\JavaSpace\\华东hackathon2020\\SEexperiement-master\\json\\";
 ///       String baseFileName = extractMessage("https://api.github.com/repos/eastchinaHackathon2020/testcase/commits", "1-商业模式;2-需求获取;3-需求规格;4-体系结构;5-前端;6-后端;");
         String baseFileName = extractMessage(apiUrl, targets);
+        System.out.println("----");
+        System.out.println(apiUrl);
+        System.out.println(targets);
+        System.out.println("-----");
         doPy("D:\\JavaSpace\\华东hackathon2020\\SEexperiement-master\\src\\main\\java\\com\\mycompany\\myapp\\util\\gantt.py",pathroot+baseFileName+".json");
         //用来返回前端
         String imageUrl  = OSSServer.uploadImage(pathroot+baseFileName+".png");
@@ -45,7 +63,7 @@ public class GanttServer {
 //            while ((line = in.readLine()) != null) {
 //                System.out.println(line);
 //            }
-//            in.close();
+            is.close();
 //            pr.waitFor();
             System.out.println("end");
         } catch (Exception e) {
@@ -59,7 +77,8 @@ public class GanttServer {
             List<Commit> commits = new ArrayList<>();
             JSONArray jsonArray;
             do {
-                String res = HttpClient4.doGet(apiUrl + "?page=" + page + "&per_page=" + per_page + "&access_token=c23bf38ff1be1b9fd73e91a757181314b8e702ce");
+                String res = HttpClient4.doGet(apiUrl + "?page=" + page + "&per_page=" + per_page + "&access_token=ff24201d7421725d526b6e4536762c62dfa909fc");
+//                String res = HttpClient4.doGet(apiUrl + "?page=" + page + "&per_page=" + per_page);
                 System.out.println(res);
                 page++;
                 jsonArray = JSONArray.parseArray(res);
@@ -105,7 +124,7 @@ public class GanttServer {
         List<Commit> commits = getCommits(apiUrl);
 
         HashMap<String, Object> jsonTemp = new HashMap<>();// 准备转为json
-        jsonTemp.put("title", "compilers");
+        jsonTemp.put("title", baseFileName);
         jsonTemp.put("xlabel", "time(commits)");
         ArrayList<HashMap<String,Object>> packages = new ArrayList();
         jsonTemp.put("packages", packages);
@@ -130,6 +149,7 @@ public class GanttServer {
             for (String t : targets) {
 
                 if (commit.getMessage().contains(t)) {
+                    System.out.println(commit.getMessage()+" hit");
                     HashMap<String,Object> items = new HashMap<>();
 
                     ArrayList<Integer> ticks = new ArrayList<>();
@@ -163,6 +183,8 @@ public class GanttServer {
                                 }
 //                                ticks.add(count + 1);
                                 items.put("idx",(Integer)pkg.get("idx"));
+                                if(pkg.containsKey("legend")){
+                                items.put("legend", commit.getAuthor());}
                                 packages.remove(pkg);
 
                             }
@@ -182,11 +204,13 @@ public class GanttServer {
 
                     if (colorMap.containsKey(commit.getAuthor())){
                         items.put("color",colorMap.get(commit.getAuthor()));
+//                        items.put("legend",commit.getAuthor());
                     }
                     else {
                         colorMap.put(commit.getAuthor(),colors.get(colorIDX));
                         colorIDX++;
                         items.put("color",colorMap.get(commit.getAuthor()));
+                        items.put("legend",commit.getAuthor());
                     }
 
                     if (flag==0){
