@@ -123,21 +123,22 @@ import { merge } from "../api/upload";
 import {registerProject} from "../api/project";
 import { Store,mapState } from 'vuex';
 import axios from 'axios';
+import formatter from "../../shared/config/formatter";
 
 
 // tasks:[
 //     {
 //         name:"task1",
 //         subTask:[
-//             {
-//                 subname:"subTask1",
-//             },
-//             {
-//                 subname:"subTask4",
-//             },
-//             {
-//                 subname:"subTask7",
-//             },
+//
+//                "subTask1",
+//
+//
+//                 "subTask4",
+//
+//
+//             "subTask7",
+//
 //         ]
 //     },
 //     {
@@ -198,15 +199,17 @@ export default{
             this.tasks[i]
         } */
         this.form.task=this.tasks;
-        
+
         //console.log(this.form.projectUrl);
         axios
         .post('api/registerProject',this.form)
             .then(result => {
                 console.log(result);
                 this.form.projectUrl='';
+                this.$store.commit('setProject',this.form);
         });
-        
+
+        this.$router.push({name: 'Result'})
 
     },
     showform(){

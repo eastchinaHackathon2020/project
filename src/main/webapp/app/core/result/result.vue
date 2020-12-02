@@ -43,7 +43,11 @@
                         </b-card-body>
                     </b-col>
                     <b-col md="7">
-                        <b-card-img :src="thisProject.imgUrl" alt="Image" class="rounded-0"></b-card-img>
+                        <b-card-img style=" width: auto;
+    height: auto;
+    max-width: 90%;
+    max-height: 90%;
+" :src="thisProject.imgUrl" alt="Image" class="rounded-0"></b-card-img>
                     </b-col>
                 </b-row>
             </b-card>
@@ -120,7 +124,6 @@
         box-shadow: 0 3px 7px rgba(0,0,0,.75), 0 -3px 7px rgba(0,0,0,.2);
         padding: 35px 30px 20px 30px;
     }
-
     .hljs {
         border: 0;
         font-size: 12px;

@@ -36,6 +36,28 @@
         data(){
             return{
                 allProjects:[
+                    {
+                        githubAddress:"githubAddress",
+                        imgUrl:"imgUrl",
+                        tasks:[
+
+                {
+                    name:"task1",
+                    subTask:[
+
+                        "subTask1",
+
+
+                        "subTask4",
+
+
+                        "subTask7",
+
+                    ]
+                },
+                        ]
+                    },
+
 
                 ],
 
@@ -76,6 +98,7 @@
         },
         methods:{
             jumpToDetail(project){
+                console.log("hwere",project);
                 this.$store.commit('setProject',project)
                 //将当前的project commit到store
                 this.$router.push({name: 'Result'})
